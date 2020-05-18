@@ -1,8 +1,11 @@
 const EXPRESS = require("express")
-const APP = express()
+const APP = EXPRESS()
+const PORT = process.env.port
 
-applicationCache.get("/", (request, response) => {
+APP.get("/", (request, response) => {
 	response.sendFile("Horaire.html")
 })
 
-applicationCache.listen(process.env.port || 80)
+APP.listen(PORT || 80, () => {
+	console.info(`Application en marche! Port : ${PORT}.`)
+})
