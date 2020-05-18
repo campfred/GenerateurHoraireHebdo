@@ -1,0 +1,323 @@
+/**
+  Couleurs proviennent d'Open color.
+  https://yeun.github.io/open-color/
+**/
+
+:root {
+	font-size: 0.9em;
+	font-family: "SF Pro Display", sans-serif;
+	color: #212529;
+	--police-monospace: "SF Mono", monospace;
+	--table-coins-rayon: 0.5em;
+	--table-ombre: 0 0 0.25em 0 #2125291f;
+	--table-entête-primaire: #212529;
+	--table-entête-secondaire: #4950573f;
+	/* Pour petite ligne séparatrice dans l'entête. */
+	--table-entête-texte: #f8f9fa;
+	--table-colonne-primaire: #f1f3f5;
+	--table-colonne-secondaire: #dee2e6;
+	--table-fond-primaire: #f8f9fa;
+	--table-fond-secondaire: #e9ecef;
+	--bouton-coins-ronds: 10em;
+	--bouton-ajouter-couleur: #212529;
+	--bouton-supprimer-couleur: #c92a2a;
+	--séances-coins-rayons: 0.25em;
+	--séances-texte: #212529;
+	--séances-texte-transparent: #212529bf;
+	--cours0-fond: #339af0;
+	/* blue 5 */
+	--cours1-fond: #51cf66;
+	/* green 5 */
+	--cours2-fond: #ff6b6b;
+	/* red 5 */
+	--cours3-fond: #fcc419;
+	/* yellow 5 */
+	--cours4-fond: #adb5bd;
+	/* gray 5 */
+	--cours5-fond: #5c7cfa;
+	/* indigo 5 */
+	--cours6-fond: #20c997;
+	/* teal 5 */
+	--cours7-fond: #f06595;
+	/* pink 5 */
+	--cours8-fond: #ff922b;
+	/* orange 5 */
+}
+
+@font-face {
+	font-family: "EmojiOne";
+	src: url(https://cdnjs.com/libraries/emojione);
+}
+
+#titreDonnées,
+#titreHoraire,
+.instructions,
+#titreListeCours {
+	text-align: center;
+}
+
+.instructions {
+	margin-bottom: 1em;
+}
+
+#donnéesÉtudiantCodePermanent {
+	font-family: var(--police-monospace);
+	font-weight: lighter;
+}
+
+#donnéesÉtudiantSessionAnnée {
+	width: 3.5em;
+}
+
+#titreHoraire {
+	margin-top: revert;
+	margin-bottom: 0.25em;
+}
+
+h4 {
+	margin-top: 0em;
+	font-weight: normal;
+}
+
+.codePermanent {
+	font-family: var(--police-monospace);
+	text-transform: uppercase;
+}
+
+#grilleDonnéesCours tbody td {
+	padding: 0.25em
+}
+
+.tableSéances {
+	margin-bottom: auto;
+}
+
+.type {
+	width: 4.5em;
+}
+
+.local {
+	width: 3.25em;
+	font-family: var(--police-monospace)
+}
+
+.jour {
+	width: 4em;
+}
+
+#grilleDonnéesCours .groupe,
+#grilleDonnéesCours .crédits,
+#grilleDonnéesCours .icône {
+	width: 4.5em;
+}
+
+table {
+	overflow: hidden;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1em;
+	border-collapse: collapse;
+	border-radius: var(--table-coins-rayon);
+	box-shadow: var(--table-ombre);
+	-webkit-box-shadow: var(--table-ombre);
+	-moz-box-shadow: var(--table-ombre);
+}
+
+thead tr {
+	background-color: var(--table-entête-primaire);
+	color: var(--table-entête-texte);
+	border-spacing: 0em;
+	text-align: center;
+	font-weight: bold;
+}
+
+thead tr td {
+	padding: 0.5em;
+}
+
+button {
+	text-align: center;
+	vertical-align: middle;
+	background: none;
+	border: none;
+	padding: 0;
+}
+
+#contrôlesPrincipaux {
+	position: absolute;
+	left: 84%;
+	text-align: right;
+}
+
+#contrôlesPrincipaux button {
+	/*! font-size: 1.5em; */
+	/*! text-align: center; */
+	/*! vertical-align: middle; */
+	background: var(--table-entête-primaire);
+	border: solid 0.1em var(--table-entête-primaire);
+	border-radius: var(--bouton-coins-ronds);
+	padding: 0.75em;
+	/*! border: revert; */
+	display: inline-flex;
+	align-items: center;
+}
+
+#contrôlesPrincipaux button:active {
+	background: var(--table-entête-secondaire);
+}
+
+.tableauRangéeContenu {
+	background-color: var(--table-fond-primaire);
+}
+
+.tableauRangéeContenu td {
+	padding: 0.5em;
+}
+
+.tableSéances td {
+	padding: 0.25em;
+}
+
+.ajouterSéance {
+	width: 100%;
+	padding: 0;
+}
+
+.ajouterCours, .ajouterSéance {
+	width: 100%;
+	padding: 0;
+	fill: var(--bouton-ajouter-couleur);
+}
+
+.supprimerCours, .supprimerSéance {
+	fill: var(--bouton-supprimer-couleur)
+}
+
+.horaireRangéeEntête {
+	text-transform: uppercase;
+}
+
+.horaireRangéeEntête td {
+	padding: 1em;
+}
+
+.horaireRangéeContenu {
+	background-color: var(--table-fond-primaire);
+	height: 1em;
+	vertical-align: top;
+}
+
+.horaireRangéeEntête .horaireColonneHeure {
+	border-right: 0.1em solid var(--table-entête-secondaire);
+}
+
+.horaireRangéeContenu .horaireColonneHeure {
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	background-color: var(--table-colonne-primaire);
+	text-align: right;
+}
+
+.horaireColonneJour {
+	width: 10em;
+}
+
+.horaireSéance {
+	border-radius: var(--séances-coins-rayons);
+	padding: 0.5em;
+	height: 100%;
+	color: var(--séances-texte)
+}
+
+.horaireSéanceTitre {
+	text-align: center;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-bottom: 0.5em;
+}
+
+.horaireSéanceTitreIcône {
+	font-family: "EmojiOne";
+}
+
+.horaireSéanceTitreGroupe {
+	font-weight: lighter;
+	color: var(--séances-texte-transparent);
+}
+
+.horaireSéanceType {
+	font-weight: lighter;
+	font-size: 0.75em;
+	text-transform: capitalize;
+	color: var(--séances-texte-transparent);
+}
+
+.horaireSéanceDescription,
+.horaireSéanceHoraire,
+.horaireSéanceLocal {
+	font-size: 0.75em;
+}
+
+.horaireSéanceLocal {
+	font-family: var(--police-monospace);
+}
+
+.horaireRangéeEntête .horaireColonnePadding,
+.horaireColonnePadding {
+	padding: 0.25em;
+}
+
+.listeColonneCode {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.listeColonneGroupe {
+	text-align: center;
+}
+
+.listeColonneCrédits {
+	text-align: right;
+}
+
+.impair {
+	background-color: var(--table-fond-secondaire);
+}
+
+.impair .horaireColonneHeure {
+	background-color: var(--table-colonne-secondaire);
+}
+
+.cours0 {
+	background-color: var(--cours0-fond);
+}
+
+.cours1 {
+	background-color: var(--cours1-fond);
+}
+
+.cours2 {
+	background-color: var(--cours2-fond);
+}
+
+.cours3 {
+	background-color: var(--cours3-fond);
+}
+
+.cours4 {
+	background-color: var(--cours4-fond);
+}
+
+.cours5 {
+	background-color: var(--cours5-fond);
+}
+
+.cours6 {
+	background-color: var(--cours6-fond);
+}
+
+.cours7 {
+	background-color: var(--cours7-fond);
+}
