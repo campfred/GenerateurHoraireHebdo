@@ -1,0 +1,22 @@
+{
+  "name": "generateurhorairehebdo",
+  "version": "1.0.0",
+  "description": "Générateur d'horaire hebdomadaire plus propre et agréable que celui de ChemiNot à l'ÉTS.",
+  "main": "node Serve.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/campfred/GenerateurHoraireHebdo.git"
+  },
+  "author": "Frédéric Campagna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/campfred/GenerateurHoraireHebdo/issues"
+  },
+  "homepage": "https://github.com/campfred/GenerateurHoraireHebdo#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

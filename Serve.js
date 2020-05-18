@@ -5,4 +5,4 @@ applicationCache.get("/", (request, response) => {
 	response.sendFile("Horaire.html")
 })
 
-applicationCache.listen(process.env.port)
+applicationCache.listen(process.env.port || 80)
