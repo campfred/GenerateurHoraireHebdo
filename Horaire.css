@@ -183,13 +183,15 @@ button {
 	padding: 0;
 }
 
-.ajouterCours, .ajouterSéance {
+.ajouterCours,
+.ajouterSéance {
 	width: 100%;
 	padding: 0;
 	fill: var(--bouton-ajouter-couleur);
 }
 
-.supprimerCours, .supprimerSéance {
+.supprimerCours,
+.supprimerSéance {
 	fill: var(--bouton-supprimer-couleur)
 }
 

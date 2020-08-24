@@ -171,6 +171,9 @@ function décoderSession(codeSession) {
 		case "E":
 			descripteurSession.saison = "été"
 			break;
+		case "P":
+			descripteurSession.saison = "printemps"
+			break;
 		default:
 			break;
 	}
