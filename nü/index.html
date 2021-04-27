@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap CSS -->
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+	<script src="./js/bootstrap.bundle.min.js" type="text/javascript"></script>
+
+	<!-- Own JS -->
+	<script src="./js/index.js" type="text/javascript"></script>
+
+	<title>Weekly schedule page maker</title>
+</head>
+
+<body onload="setupEvents()">
+	<div class="container">
+		<h1>Weekly schedule page maker</h1>
+		<h2 id="data">Schedule data</h2>
+		Please enter below the information you wish to show on your schedule page.
+		<h3 id="data-personal">Personal</h3>
+		<p>
+			<form id="data-personal-form">
+				<div class="row g-3">
+					<div class="col-8">
+						<div class="form-floating" id="data-personal-form-name">
+							<input type="text" class="form-control" id="data-personal-form-name-input" placeholder="Name" aria-describedby="data-personal-form-name-help">
+							<label for="data-personal-form-name-input" class="form-label">Name</label>
+							<div id="data-personal-form-name-help" class="form-text">
+								Optional. Enter the name you want to show on the schedule. It can be for a person's or an organisation's name for example. This will show in the schedule page's header.
+							</div>
+						</div>
+					</div>
+					<div class="col-4">
+						<div class="form-floating" id="data-personal-form-code">
+							<input type="text" class="form-control font-monospace" id="data-personal-form-code-input" placeholder="Code" aria-describedby="data-personal-form-code-help">
+							<label for="data-personal-form-code-input" class="form-label">Code</label>
+							<div id="data-personal-form-code-help" class="form-text">
+								Optional. If you want to show a code next to the name, enter it here. It can be a student file code for example.
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<label for="data-personal-form-date" class="form-label">
+							Date to show on schedule
+						</label><br />
+						<div class="input-group">
+							<span class="input-group-text">
+								<input type="radio" class="form-check-input" name="data-personal-form-date" id="data-personal-form-date-none" value="disable">
+								<label class="form-check-label" for="data-personal-form-date-none">None</label>
+							</span>
+							<span class="input-group-text">
+								<input type="radio" class="form-check-input" name="data-personal-form-date" id="data-personal-form-date-today" value="today" checked>
+								<label class="form-check-label" for="data-personal-form-date-today">Today's</label>
+							</span>
+							<span class="input-group-text">
+								<input type="radio" class="form-check-input" name="data-personal-form-date" id="data-personal-form-date-custom" value="custom">
+								<label class="form-check-label" for="data-personal-form-date-custom">Custom</label>
+							</span>
+							<input type="text" class="form-control" id="data-personal-form-date-input" placeholder="Custom date" aria-describedby="data-personal-form-date-help" readonly>
+							<!-- <label for="data-personal-form-date-input" class="form-label">Custom date</label> -->
+							<div id="data-personal-form-code-help" class="form-text">
+								Optional. Choose if you want to show a date at the right of the schedule's header. This is usually used to show either the date the schedule has been made or to indicate the week date this schedule becomes in
+								use.
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</p>
+		<h3 id="data-subject">Subject</h3>
+		<p>
+			<div class="row g-3">
+				<div class="col-12">
+					<div class="form-floating" id="data-subject-form-title">
+						<input type="text" class="form-control" id="data-subject-form-title-input" placeholder="Title" aria-describedby="data-subject-form-title-help">
+						<label for="data-subject-form-title-input" class="form-label">Title</label>
+						<div id="data-subject-form-title-help" class="form-text">
+							This is the big title that appears over the schedule grid. Enter whatever you want it to be here.
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-floating" id="data-subject-form-subtitle">
+						<textarea class="form-control" id="data-subject-form-subtitle-input" placeholder="Subtitle" aria-describedby="data-subject-form-subtitle-help"></textarea>
+						<label for="data-subject-form-subtitle-input" class="form-label">Subtitle</label>
+						<div id="data-subject-form-subtitle-help" class="form-text">
+							Optional. Enter a short description giving some context or information about what this schedule is destined for.
+						</div>
+					</div>
+				</div>
+			</div>
+		</p>
+		<h3 id="data-events">Events</h3>
+		<p>
+			<img class="img-fluid" src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png">
+		</p>
+		<h2 id="render">Rendered schedule</h2>
+		<p>
+			Here is a preview of what your schedule will look like.<br />
+			<img class="img-fluid" src="https://scitechdaily.com/images/Cat-COVID-19-Mask-777x518.jpg">
+		</p>
+		<h2 id="about">About this applet</h2>
+		<p>
+			Want to know more about this little web applet? Check out these links!<br />
+			<img class="img-fluid" src="https://media.giphy.com/media/13CoXDiaCcCoyk/giphy.gif">
+		</p>
+	</div>
+</body>
+
+</html>
