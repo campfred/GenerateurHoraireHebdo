@@ -30,8 +30,8 @@
 			<form id="data-personal-form">
 				<div class="row g-3">
 					<div class="col-8">
-						<div class="form-floating" id="data-personal-form-name">
-							<input type="text" class="form-control" id="data-personal-form-name-input" placeholder="Name" aria-describedby="data-personal-form-name-help">
+						<div id="data-personal-form-name" class="form-floating">
+							<input id="data-personal-form-name-input" type="text" placeholder="Name" aria-describedby="data-personal-form-name-help" class="form-control">
 							<label for="data-personal-form-name-input" class="form-label">Name</label>
 							<div id="data-personal-form-name-help" class="form-text">
 								Optional. Enter the name you want to show on the schedule. It can be for a person's or an organisation's name for example. This will show in the schedule page's header.
@@ -39,8 +39,8 @@
 						</div>
 					</div>
 					<div class="col-4">
-						<div class="form-floating" id="data-personal-form-code">
-							<input type="text" class="form-control font-monospace" id="data-personal-form-code-input" placeholder="Code" aria-describedby="data-personal-form-code-help">
+						<div id="data-personal-form-code" class="form-floating">
+							<input id="data-personal-form-code-input" type="text" placeholder="Code" aria-describedby="data-personal-form-code-help" class="form-control font-monospace">
 							<label for="data-personal-form-code-input" class="form-label">Code</label>
 							<div id="data-personal-form-code-help" class="form-text">
 								Optional. If you want to show a code next to the name, enter it here. It can be a student file code for example.
@@ -51,20 +51,17 @@
 						<label for="data-personal-form-date" class="form-label">
 							Date to show on schedule
 						</label><br />
-						<div class="input-group">
-							<span class="input-group-text">
-								<input type="radio" class="form-check-input" name="data-personal-form-date" id="data-personal-form-date-none" value="disable">
-								<label class="form-check-label" for="data-personal-form-date-none">None</label>
+						<div id="data-personal-form-date" class="input-group">
+							<span class=" input-group-text">
+								<label class="form-check-label"><input id="data-personal-form-date-none" type="radio" name="data-personal-form-date" value="disable" class="form-check-input"> None</label>
 							</span>
 							<span class="input-group-text">
-								<input type="radio" class="form-check-input" name="data-personal-form-date" id="data-personal-form-date-today" value="today" checked>
-								<label class="form-check-label" for="data-personal-form-date-today">Today's</label>
+								<label class="form-check-label"><input checked id="data-personal-form-date-today" type="radio" name="data-personal-form-date" value="today" class="form-check-input"> Today's</label>
 							</span>
 							<span class="input-group-text">
-								<input type="radio" class="form-check-input" name="data-personal-form-date" id="data-personal-form-date-custom" value="custom">
-								<label class="form-check-label" for="data-personal-form-date-custom">Custom</label>
+								<label class="form-check-label"><input id="data-personal-form-date-custom" type="radio" name="data-personal-form-date" value="custom" class="form-check-input"> Custom</label>
 							</span>
-							<input type="text" class="form-control" id="data-personal-form-date-input" placeholder="Date" aria-describedby="data-personal-form-date-help" readonly>
+							<input readonly id="data-personal-form-date-input" type="text" placeholder="Date" aria-describedby="data-personal-form-date-help" class="form-control">
 							<div id="data-personal-form-code-help" class="form-text">
 								Optional. Choose if you want to show a date at the right of the schedule's header. This is usually used to show either the date the schedule has been made or to indicate the week date this schedule becomes in
 								use.
@@ -78,17 +75,19 @@
 		<p>
 			<div class="row g-3">
 				<div class="col-12">
-					<div class="form-floating" id="data-subject-form-title">
-						<input type="text" class="form-control" id="data-subject-form-title-input" placeholder="Title" aria-describedby="data-subject-form-title-help">
+					<div id="data-subject-form-title" class="form-floating">
+						<input id="data-subject-form-title-input" type="text" placeholder="Title" aria-describedby="data-subject-form-title-help" class="form-control">
 						<label for="data-subject-form-title-input" class="form-label">Title</label>
 						<div id="data-subject-form-title-help" class="form-text">
 							This is the big title that appears over the schedule grid. Enter whatever you want it to be here.
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="row g-3">
 				<div class="col">
-					<div class="form-floating" id="data-subject-form-subtitle">
-						<textarea class="form-control" id="data-subject-form-subtitle-input" placeholder="Subtitle" aria-describedby="data-subject-form-subtitle-help"></textarea>
+					<div id="data-subject-form-subtitle" class="form-floating">
+						<textarea id="data-subject-form-subtitle-input" placeholder="Subtitle" aria-describedby="data-subject-form-subtitle-help" class="form-control"></textarea>
 						<label for="data-subject-form-subtitle-input" class="form-label">Subtitle</label>
 						<div id="data-subject-form-subtitle-help" class="form-text">
 							Optional. Enter a short description giving some context or information about what this schedule is destined for.
@@ -97,15 +96,24 @@
 				</div>
 			</div>
 		</p>
-		<h3 id="data-events">Events</h3>
 		<p>
-			<div class="accordion" id="data-events-accordion">
-				<!-- event-item template goes here -->
+			<div class="row">
+				<div class="col">
+					<h3 id="data-events">Events</h3>
+				</div>
+				<div class="col-2 text-end">
+					<button id="data-events-button" type="button" aria-label="Add event" class="btn btn-lg btn-primary py-0">
+						<i class="bi bi-plus"></i>
+					</button>
+					<!-- <div id="data-events-button-help" class="form-text" style="font-size: 0.75rem;">
+						Add another event.
+					</div> -->
+				</div>
 			</div>
-			<div class="d-grid gap-2">
-				<button type="button" aria-label="Add event" class="btn btn-lg btn-primary col-12 py-0" id="data-events-button">
-					<i class="bi bi-plus" style="font-size: 2rem;"></i>
-				</button>
+			<div class="row">
+				<div id="data-events-accordion" class="accordion">
+					<!-- Event-item template goes here -->
+				</div>
 			</div>
 		</p>
 		<h2 id="render">Rendered schedule</h2>
@@ -119,60 +127,164 @@
 
 		<!-- Event item template -->
 		<template id="template-event-item">
-			<div class="accordion-item" id="data-events-$">
-				<h2 class="accordion-header" id="data-events-$-heading">
-					<button class="accordion-button collapsed" type="button" id="data-events-$-heading-button" data-bs-toggle="collapse" data-bs-target="#data-events-$-collapse" aria-expanded="false" aria-controls="data-events-$-collapse">
+			<div id="data-event-$" class="accordion-item">
+				<h2 id="data-event-$-heading" class="accordion-header">
+					<button id="data-event-$-heading-button" type="button" data-bs-toggle="collapse" data-bs-target="#data-event-$-collapse" aria-expanded="false" aria-controls="data-event-$-collapse" class="accordion-button collapsed">
 						Event $
 					</button>
 				</h2>
-				<div id="data-events-$-collapse" class="accordion-collapse collapse" aria-labelledby="data-events-$-heading" data-bs-parent="#data-events-accordion">
+				<div id="data-event-$-collapse" aria-labelledby="data-event-$-heading" data-bs-parent="#data-events-accordion" class="accordion-collapse collapse">
 					<div class="accordion-body">
-						<form id="data-events-$-form">
+						<form id="data-event-$-form">
+							<div class="row">
+								<div class="col">
+									<h5>Info</h5>
+								</div>
+							</div>
 							<div class="row g-3">
-								<div class="col-3">
-									<!-- <label for="data-events-$-form-title-input" class="form-label">Title</label> -->
-									<input type="text" class="form-control" id="data-events-$-form-title-input" placeholder="Title">
-									<div id="data-events-$-form-title-help" class="form-text">
+								<div class="col-lg">
+									<input id="data-event-$-form-title-input" type="text" placeholder="Title" class="form-control">
+									<div id="data-event-$-form-title-help" class="form-text">
 										Enter the event's title.
 									</div>
 								</div>
-								<div class="col-4">
-									<!-- <label for="data-events-$-form-description-input" class="form-label">Description</label> -->
-									<input type="text" class="form-control" id="data-events-$-form-description-input" placeholder="Description">
-									<div id="data-events-$-form-description-help" class="form-text">
+								<div class="col-lg">
+									<input id="data-event-$-form-description-input" type="text" placeholder="Description" class="form-control">
+									<div id="data-event-$-form-description-help" class="form-text">
 										Optional. Enter the event's description.
 									</div>
 								</div>
-								<div class="col-2">
-									<!-- <label for="data-events-$-form-group-input" class="form-label">Group</label> -->
-									<input type="number" class="form-control" id="data-events-$-form-group-input" placeholder="1">
-									<div id="data-events-$-form-group-help" class="form-text" style="font-size: 0.75rem;">
-										Optional. Group you're in for the event.
+								<div class="col">
+									<input id="data-event-$-form-group-input" type="number" placeholder="1 or text" class="form-control">
+									<div id="data-event-$-form-group-help" class="form-text">
+										Opt. Enter the group for the event.
 									</div>
 								</div>
-								<div class="col-2">
-									<!-- <label for="data-events-$-form-icon-input" class="form-label">Icon</label> -->
-									<input type="text" class="form-control" id="data-events-$-form-icon-input" placeholder="Emoji">
-									<div id="data-events-$-form-icon-help" class="form-text">
-										Optional. Event icon, emoji or <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap icon value</a>.
-									</div>
-								</div>
-								<div class="col-1 d-grid">
-									<!-- <label for="data-events-$-delete-button" class="form-label">Delete</label><br /> -->
-									<button type="button" class="btn btn-danger" id="data-events-$-delete-button" aria-label="Delete event">
-										<i class="bi bi-trash-fill"></i>
-									</button>
-									<div id="data-events-$-form-delete-help" class="form-text">
-										Removes this event.
+								<div class="col">
+									<input id="data-event-$-form-icon-input" type="text" placeholder="Emoji or icon name" class="form-control">
+									<div id="data-event-$-form-icon-help" class="form-text">
+										Opt. Put an emoji or <a href="https://icons.getbootstrap.com/" target="_blank">Bs icon name</a>.
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<!-- <div class="accordion" id="data-events-$-schedules">
+							<div class="row g-3">
+							</div>
+							<div class="row mt-4">
+								<div class="col">
+									<h5 class="h5">Schedules</h5>
 								</div>
-								<button type="button" aria-label="Add event" class="btn btn-lg btn-primary col-12" id="data-events-button">
-									<i class="bi bi-plus-square-fill" style="font-size: 1.5rem;"></i>
-								</button> -->
+								<div class="col-2 text-end">
+									<button id="data-event-$-schedules-button" type="button" aria-label="Add schedule" class="btn btn-primary py-0">
+										<i class="bi bi-plus"></i>
+									</button>
+								</div>
+							</div>
+							<div class="row">
+								<div id="data-event-$-schedules-accordion" class="accordion">
+									<!-- Schedule-item template goes here -->
+								</div>
+							</div>
+							<div class="row mt-2">
+								<!-- <h5>Delete</h5>
+							</div>
+							<div class="row"> -->
+								<div class="col d-grid">
+									<!-- <label for="data-event-$-delete-button" class="form-label">Delete event</label> -->
+									<button id="data-event-$-delete-button" type="button" aria-label="Delete event" class="btn btn-danger">
+										Remove event <i class="bi bi-trash-fill"></i>
+									</button>
+									<!-- <div id="data-event-$-form-delete-help" class="form-text" style="font-size: 0.75rem;">
+										Poofs event.
+									</div> -->
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</template>
+		<!-- Schedule item template -->
+		<template id="template-schedule-item">
+			<div id="data-event-$-schedule-%" class="accordion-item">
+				<h2 id="data-event-$-schedule-%-heading" class="accordion-header">
+					<button id="data-event-$-schedule-%-heading-button" type="button" data-bs-toggle="collapse" data-bs-target="#data-event-$-schedule-%-collapse" aria-expanded="false" aria-controls="data-event-$-schedule-%-collapse"
+						class="accordion-button collapsed">
+						Schedule %
+					</button>
+				</h2>
+				<div id="data-event-$-schedule-%-collapse" aria-labelledby="data-event-$-schedule-%-heading" data-bs-parent="#data-event-$-schedules-accordion" class="accordion-collapse collapse">
+					<div class="accordion-body">
+						<form id="data-event-$-schedule-%-form">
+							<div class="row">
+								<div class="col-lg">
+									<div class="row">
+										<div class="col">
+											<h6>Info</h6>
+										</div>
+									</div>
+									<div class="row g-3">
+										<div class="col-lg-4">
+											<input id="data-event-$-schedule-%-form-type-input" type="text" placeholder="Type" class="form-control">
+											<div id="data-event-$-schedule-%-form-type-help" class="form-text">
+												Optional. Enter the schedule's type.
+											</div>
+										</div>
+										<div class="col-lg">
+											<input id="data-event-$-schedule-%-form-location-input" type="text" placeholder="Location" class="form-control">
+											<div id="data-event-$-schedule-%-form-location-help" class="form-text">
+												Optional. Enter the schedule's location.
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg">
+									<div class="row">
+										<div class="col">
+											<h6>Time</h6>
+										</div>
+									</div>
+									<div class="row g-3">
+										<div class="col-lg-4">
+											<select id="data-event-$-schedule-%-form-day-select" aria-label="Scheduled day" class="form-select">
+												<option selected value="1">Monday</option>
+												<option value="2">Tuesday</option>
+												<option value="3">Wednesday</option>
+												<option value="4">Thursday</option>
+												<option value="5">Friday</option>
+												<option value="6">Saturday</option>
+												<option value="7">Sunday</option>
+											</select>
+											<div id="data-event-$-schedule-%-form-day-help" class="form-text">
+												Select the day it's scheduled for.
+											</div>
+										</div>
+										<div class="col-lg">
+											<div class="input-group">
+												<span class="input-group-text">
+													<label class="form-check-label"><input id="data-event-$-schedule-%-form-time-check" type="checkbox" value="" aria-label="Checkbox for full day schedule" class="form-check-input"> Full
+														day</label>
+												</span>
+												<input id="data-event-$-schedule-%-form-time-start" type="time" step="300" placeholder="Start time" class="form-control">
+												<input id="data-event-$-schedule-%-form-time-end" type="time" step="300" placeholder="End time" class="form-control">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-1">
+									<div class="row">
+										<h6>Delete</h6>
+									</div>
+									<div class="row g-3">
+										<div class="col-lg-1 d-grid">
+											<button id="data-event-$-schedule-%-form-delete-button" type="button" aria-label="Delete schedule" class="btn btn-danger">
+												<i class="bi bi-trash-fill"></i>
+											</button>
+											<!-- <div id="data-event-$-schedule-%-form-delete-help" class="form-text">
+												Pews schedule.
+											</div> -->
+										</div>
+									</div>
+								</div>
 							</div>
 						</form>
 					</div>
