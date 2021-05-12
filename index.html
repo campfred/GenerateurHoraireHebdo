@@ -32,44 +32,44 @@
 			<form id="data-personal-form">
 				<div class="row g-3">
 					<div class="col-lg-8">
-						<div id="data-personal-form-name" class="form">
-							<input id="data-personal-form-name-input" type="text" placeholder="Name" aria-describedby="data-personal-form-name-help" class="form-control">
-							<div id="data-personal-form-name-help" class="form-text">
+						<div id="data-personal-name" class="form">
+							<input id="data-personal-name-input" type="text" placeholder="Name" aria-describedby="data-personal-name-help" class="form-control">
+							<div id="data-personal-name-help" class="form-text">
 								Optional. Enter the name you want to show on the schedule. It can be for a person's or an organisation's name for example. This will show in the schedule page's header.
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-4">
-						<div id="data-personal-form-code" class="form">
-							<input id="data-personal-form-code-input" type="text" placeholder="Code" aria-describedby="data-personal-form-code-help" class="form-control font-monospace">
-							<div id="data-personal-form-code-help" class="form-text">
+						<div id="data-personal-code" class="form">
+							<input id="data-personal-code-input" type="text" placeholder="Code" aria-describedby="data-personal-code-help" class="form-control font-monospace">
+							<div id="data-personal-code-help" class="form-text">
 								Optional. If you want to show a code next to the name, enter it here. It can be a student file code for example.
 							</div>
 						</div>
 					</div>
 					<div class="col">
-						<label for="data-personal-form-date" class="form-label">
+						<label for="data-personal-date" class="form-label">
 							Date to show on schedule
 						</label>
 						<div class="row g-3">
 							<div class="col-md-auto d-grid gap-2 px-8">
 								<div role="group" aria-label="Selector to set the date to show" class="btn-group">
-									<input id="data-personal-form-date-none" type="radio" name="btnradio" autocomplete="off" checked class="btn-check">
-									<label class="btn btn-outline-primary" for="data-personal-form-date-none">None</label>
+									<input checked id="data-personal-date-radio-none" type="radio" name="data-personal-date-radio" class="btn-check">
+									<label class="btn btn-outline-primary" for="data-personal-date-radio-none">None</label>
 
-									<input id="data-personal-form-date-today" type="radio" name="btnradio" autocomplete="off" class="btn-check">
-									<label class="btn btn-outline-primary" for="data-personal-form-date-today">Today's</label>
+									<input id="data-personal-date-radio-today" type="radio" name="data-personal-date-radio" class="btn-check">
+									<label class="btn btn-outline-primary" for="data-personal-date-radio-today">Today's</label>
 
-									<input id="data-personal-form-date-custom" type="radio" name="btnradio" autocomplete="off" class="btn-check">
-									<label class="btn btn-outline-primary" for="data-personal-form-date-custom">Custom</label>
+									<input id="data-personal-date-radio-custom" type="radio" name="data-personal-date-radio" class="btn-check">
+									<label class="btn btn-outline-primary" for="data-personal-date-radio-custom">Custom</label>
 								</div>
 							</div>
 							<div class="col-md">
-								<input readonly id="data-personal-form-date-input" type="text" placeholder="Date" aria-describedby="data-personal-form-date-help" class="form-control">
+								<input readonly id="data-personal-date-input" type="date" placeholder="Date" aria-describedby="data-personal-date-help" class="form-control">
 							</div>
 						</div>
 						<div class="row">
-							<div id="data-personal-form-code-help" class="form-text">
+							<div id="data-personal-code-help" class="form-text">
 								Optional. Choose if you want to show a date at the right of the schedule's header. This is usually used to show either the date the schedule has been made or to indicate the week date this schedule
 								becomes in use.
 							</div>
@@ -82,9 +82,9 @@
 		<p>
 			<div class="row g-3 mb-3">
 				<div class="col">
-					<div id="data-subject-form-title" class="form">
-						<input id="data-subject-form-title-input" type="text" placeholder="Title" aria-describedby="data-subject-form-title-help" class="form-control">
-						<div id="data-subject-form-title-help" class="form-text">
+					<div id="data-subject-title" class="form">
+						<input id="data-subject-title-input" type="text" placeholder="Title" aria-describedby="data-subject-title-help" class="form-control">
+						<div id="data-subject-title-help" class="form-text">
 							This is the big title that appears over the schedule grid. Enter whatever you want it to be here.
 						</div>
 					</div>
@@ -92,9 +92,9 @@
 			</div>
 			<div class="row g-3">
 				<div class="col">
-					<div id="data-subject-form-subtitle" class="form">
-						<textarea id="data-subject-form-subtitle-input" placeholder="Subtitle" aria-describedby="data-subject-form-subtitle-help" class="form-control"></textarea>
-						<div id="data-subject-form-subtitle-help" class="form-text">
+					<div id="data-subject-subtitle" class="form">
+						<textarea id="data-subject-subtitle-input" placeholder="Subtitle" aria-describedby="data-subject-subtitle-help" class="form-control"></textarea>
+						<div id="data-subject-subtitle-help" class="form-text">
 							Optional. Enter a short description giving some context or information about what this schedule is destined for.
 						</div>
 					</div>
@@ -107,7 +107,7 @@
 					<h3 id="data-events">Events</h3>
 				</div>
 				<div class="col text-end">
-					<button id="data-events-button" type="button" aria-label="Add event" class="btn btn-lg btn-primary py-0">
+					<button id="data-events-button" type="button" aria-label="Add event" class="btn btn-lg btn-dark py-0">
 						Add <i class="bi-folder-plus"></i>
 					</button>
 				</div>
@@ -118,9 +118,18 @@
 				</div>
 			</div>
 		</p>
-		<h2 id="render">Rendered schedule</h2>
+		<h2 id="render">
+			<div class="d-grid gap-2">
+				<button id="render-button" type="button" class="btn btn-primary btn-lg">
+					Render schedule <i class="bi bi-stars"></i>
+				</button>
+			</div>
+		</h2>
 		<p>
 			Here is a preview of what your schedule will look like.
+			<div id="render-grid">
+				<!-- Render grid template goes here -->
+			</div>
 		</p>
 		<h2 id="about">About this applet</h2>
 		<p>
@@ -145,26 +154,26 @@
 							</div>
 							<div class="row g-3">
 								<div class="col-lg">
-									<input id="data-event-$-form-title-input" type="text" placeholder="Title" class="form-control">
-									<div id="data-event-$-form-title-help" class="form-text">
+									<input id="data-event-$-title-input" type="text" placeholder="Title" class="form-control">
+									<div id="data-event-$-title-help" class="form-text">
 										Enter the event's title.
 									</div>
 								</div>
 								<div class="col-lg">
-									<input id="data-event-$-form-description-input" type="text" placeholder="Description" class="form-control">
-									<div id="data-event-$-form-description-help" class="form-text">
+									<input id="data-event-$-description-input" type="text" placeholder="Description" class="form-control">
+									<div id="data-event-$-description-help" class="form-text">
 										Optional. Enter the event's description.
 									</div>
 								</div>
 								<div class="col">
-									<input id="data-event-$-form-group-input" type="number" placeholder="1 or text" class="form-control">
-									<div id="data-event-$-form-group-help" class="form-text">
+									<input id="data-event-$-group-input" type="number" placeholder="1 or text" class="form-control">
+									<div id="data-event-$-group-help" class="form-text">
 										Optional. Enter the group for the event.
 									</div>
 								</div>
 								<div class="col">
-									<input id="data-event-$-form-icon-input" type="text" placeholder="Emoji or icon name" class="form-control">
-									<div id="data-event-$-form-icon-help" class="form-text">
+									<input id="data-event-$-icon-input" type="text" placeholder="Emoji or icon name" class="form-control">
+									<div id="data-event-$-icon-help" class="form-text">
 										Optional. Put an emoji or <a href="https://icons.getbootstrap.com/" target="_blank">Bs icon name</a>.
 									</div>
 								</div>
@@ -174,7 +183,7 @@
 									<h5 class="h5">Schedules</h5>
 								</div>
 								<div class="col text-end">
-									<button id="data-event-$-schedules-button" type="button" aria-label="Add schedule" class="btn btn-primary py-0">
+									<button id="data-event-$-schedules-button" type="button" aria-label="Add schedule" class="btn btn-dark py-0">
 										Add <i class="bi bi-calendar-plus"></i>
 									</button>
 								</div>
@@ -218,14 +227,14 @@
 									</div>
 									<div class="row g-3">
 										<div class="col-lg-4">
-											<input id="data-event-$-schedule-%-form-type-input" type="text" placeholder="Type" class="form-control">
-											<div id="data-event-$-schedule-%-form-type-help" class="form-text">
+											<input id="data-event-$-schedule-%-type-input" type="text" placeholder="Type" class="form-control">
+											<div id="data-event-$-schedule-%-type-help" class="form-text">
 												Optional. Enter the schedule's type.
 											</div>
 										</div>
 										<div class="col-lg">
-											<input id="data-event-$-schedule-%-form-location-input" type="text" placeholder="Location" class="form-control">
-											<div id="data-event-$-schedule-%-form-location-help" class="form-text">
+											<input id="data-event-$-schedule-%-location-input" type="text" placeholder="Location" class="form-control">
+											<div id="data-event-$-schedule-%-location-help" class="form-text">
 												Optional. Enter the schedule's location.
 											</div>
 										</div>
@@ -239,7 +248,7 @@
 									</div>
 									<div class="row g-3">
 										<div class="col-lg-4">
-											<select id="data-event-$-schedule-%-form-day-select" aria-label="Scheduled day" class="form-select">
+											<select id="data-event-$-schedule-%-day-select" aria-label="Scheduled day" class="form-select">
 												<option selected value="1">Monday</option>
 												<option value="2">Tuesday</option>
 												<option value="3">Wednesday</option>
@@ -248,18 +257,18 @@
 												<option value="6">Saturday</option>
 												<option value="7">Sunday</option>
 											</select>
-											<div id="data-event-$-schedule-%-form-day-help" class="form-text">
+											<div id="data-event-$-schedule-%-day-help" class="form-text">
 												Select the day it's scheduled for.
 											</div>
 										</div>
 										<div class="col-lg">
 											<div class="input-group">
 												<span class="input-group-text">
-													<label class="form-check-label"><input id="data-event-$-schedule-%-form-time-check" type="checkbox" value="" aria-label="Checkbox for full day schedule" class="form-check-input"> Full
+													<label class="form-check-label"><input id="data-event-$-schedule-%-time-check" type="checkbox" value="" aria-label="Checkbox for full day schedule" class="form-check-input"> Full
 														day</label>
 												</span>
-												<input id="data-event-$-schedule-%-form-time-start" type="time" step="300" placeholder="Start time" class="form-control">
-												<input id="data-event-$-schedule-%-form-time-end" type="time" step="300" placeholder="End time" class="form-control">
+												<input id="data-event-$-schedule-%-time-start" type="time" step="300" placeholder="Start time" class="form-control">
+												<input id="data-event-$-schedule-%-time-end" type="time" step="300" placeholder="End time" class="form-control">
 											</div>
 										</div>
 									</div>
@@ -267,7 +276,7 @@
 							</div>
 							<div class="row mt-2">
 								<div class="col d-grid">
-									<button id="data-event-$-schedule-%-form-delete-button" type="button" aria-label="Delete schedule" class="btn btn-danger">
+									<button id="data-event-$-schedule-%-delete-button" type="button" aria-label="Delete schedule" class="btn btn-danger">
 										Remove schedule <i class="bi bi-calendar-x"></i>
 									</button>
 								</div>
@@ -276,6 +285,11 @@
 					</div>
 				</div>
 			</div>
+		</template>
+
+		<!-- Render grid template -->
+		<template id="template-render-grid">
+			Grid goes here!
 		</template>
 	</div>
 </body>
