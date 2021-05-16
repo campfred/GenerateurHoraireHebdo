@@ -1,11 +1,63 @@
+class BootstrapColours
+{
+	constructor()
+	{
+		this.ColourStrings = [
+			"primary",
+			"secondary",
+			"success",
+			"info",
+			"warning",
+			"danger",
+			"light"
+		]
+		this.Index = -1
+	}
+
+	get resetIndex()
+	{
+		this.Index = -1
+		return this.Index
+	}
+
+	get nextIndex()
+	{
+		this.Index = (this.Index + 1) % this.ColourStrings.length
+		return this.Index
+	}
+
+	get colourClasses()
+	{
+		return this.ColourStrings
+	}
+
+	get nextColourClass()
+	{
+		return this.ColourStrings[this.nextIndex]
+	}
+}
+
+function getBoostrapColorClasses()
+{
+	return [
+		"primary",
+		"secondary",
+		"success",
+		"info",
+		"warning",
+		"danger",
+		"light",
+		"dark"
+	]
+}
+
 /**
- * Utility functions for diverse mechanics
+ * Utility functions for various mechanics
  */
 function getEventAccordionItems()
 {
 	return Array.from(document.querySelectorAll(".accordion-item")).filter((item) =>
 	{
-		console.log(item)
 		return !item.id.includes("schedule")
 	})
 }
@@ -71,23 +123,89 @@ function getInputNodes()
 				})
 				return eventItems
 			})()
-		},
-
-		templates: {
-			events: document.querySelector("#template-event-item"),
-			schedules: document.querySelector("#template-schedule-item")
 		}
 	}
 }
 
-function getTemplateNodes() {
+function getTemplateNodes()
+{
 	return {
 		event: document.querySelector("#template-event-item"),
 		schedule: document.querySelector("#template-schedule-item"),
 		render: {
-			grid: document.querySelector("#template-render-grid")
+			grid: document.querySelector("#template-render-base")
 		}
 	}
+}
+
+function getPersonalInfo()
+{
+	return {
+		name: document.querySelector("#data-personal-name-input").value,
+		code: document.querySelector("#data-personal-code-input").value,
+		date: (() =>
+		{
+			if (document.querySelector("#data-personal-date-radio-none").checked)
+			{
+				return null
+			} else
+			{
+				return document.querySelector("#data-personal-date-input").value
+			}
+		})()
+	}
+}
+
+function getSubjectInfo()
+{
+	return {
+		title: document.querySelector("#data-subject-title-input").value,
+		subtitle: document.querySelector("#data-subject-subtitle-input").value
+	}
+}
+
+function getEventsData()
+{
+	const Colours = new BootstrapColours()
+	const events = []
+	document.querySelectorAll(".accordion-item").forEach((accordionItem) =>
+	{
+		// If the node is not for a schedule accordion item
+		if (!accordionItem.id.includes("schedule"))
+		{
+			let event = {
+				id: accordionItem.id,
+				title: accordionItem.querySelector(`#${accordionItem.id}-title-input`).value,
+				description: accordionItem.querySelector(`#${accordionItem.id}-description-input`).value,
+				group: accordionItem.querySelector(`#${accordionItem.id}-group-input`).value,
+				icon: accordionItem.querySelector(`#${accordionItem.id}-icon-input`).value,
+				schedules: [],
+				colour: Colours.nextColourClass
+			}
+			events.push(event)
+		} else
+		{
+			let eventID = (() =>
+			{
+				let idParts = accordionItem.id.split("-")
+				return `${idParts[0]}-${idParts[1]}-${idParts[2]}`
+			})()
+			let schedule = {
+				type: accordionItem.querySelector(`#${accordionItem.id}-type-input`).value,
+				location: accordionItem.querySelector(`#${accordionItem.id}-location-input`).value,
+				day: accordionItem.querySelector(`#${accordionItem.id}-day-select`).value,
+				fullday: accordionItem.querySelector(`#${accordionItem.id}-time-check`).checked,
+				time: {
+					start: accordionItem.querySelector(`#${accordionItem.id}-time-start`).value,
+					end: accordionItem.querySelector(`#${accordionItem.id}-time-end`).value
+				}
+			}
+			events.find(({ id }) => id === eventID).schedules.push(schedule)
+		}
+	})
+
+	console.log("getEventsData()", events)
+	return events
 }
 
 function inputPersonalDateNoneClick(dateInputs)
@@ -133,84 +251,18 @@ function inputScheduleTimeFullDayClick(eventNumber, scheduleNumber)
 	inputTime.end.disabled = inputTime.check.checked
 }
 
-function getPersonalInfo()
-{
-	return {
-		name: document.querySelector("#data-personal-name-input").value,
-		code: document.querySelector("#data-personal-code-input").value,
-		date: (() =>
-		{
-			if (document.querySelector("#data-personal-date-radio-none").checked)
-			{
-				return null
-			} else
-			{
-				return document.querySelector("#data-personal-date-input").value
-			}
-		})()
-	}
-}
-
-function getSubjectInfo()
-{
-	return {
-		title: document.querySelector("#data-subject-title-input").value,
-		subtitle: document.querySelector("#data-subject-subtitle-input").value
-	}
-}
-
-function getEventsData()
-{
-	const events = []
-	document.querySelectorAll(".accordion-item").forEach((accordionItem) =>
-	{
-		// If the node is not for a schedule accordion item
-		if (!accordionItem.id.includes("schedule"))
-		{
-			let event = {
-				id: accordionItem.id,
-				title: accordionItem.querySelector(`#${accordionItem.id}-title-input`).value,
-				description: accordionItem.querySelector(`#${accordionItem.id}-description-input`).value,
-				group: accordionItem.querySelector(`#${accordionItem.id}-group-input`).value,
-				icon: accordionItem.querySelector(`#${accordionItem.id}-icon-input`).value,
-				schedules: []
-			}
-			events.push(event)
-		} else
-		{
-			let eventID = (() =>
-			{
-				let idParts = accordionItem.id.split("-")
-				return `${idParts[0]}-${idParts[1]}-${idParts[2]}`
-			})()
-			let schedule = {
-				type: accordionItem.querySelector(`#${accordionItem.id}-type-input`).value,
-				location: accordionItem.querySelector(`#${accordionItem.id}-location-input`).value,
-				day: accordionItem.querySelector(`#${accordionItem.id}-day-select`).value,
-				fullday: accordionItem.querySelector(`#${accordionItem.id}-time-check`).checked,
-				time: {
-					start: accordionItem.querySelector(`#${accordionItem.id}-time-start`).value,
-					end: accordionItem.querySelector(`#${accordionItem.id}-time-end`).value
-				}
-			}
-			events.find(({ id }) => id === eventID).schedules.push(schedule)
-		}
-	})
-	return events
-}
-
 
 /**
  * Processing functions
  */
-function renderSchedule()
+function renderSchedule(listenedEvent)
 {
 	console.info("Rendering!")
 	const PersonalInfo = getPersonalInfo()
 	const SubjectInfo = getSubjectInfo()
 	const EventsData = getEventsData()
 
-
+	setupRenderTemplate(listenedEvent)
 }
 
 
@@ -225,7 +277,6 @@ function initialize()
 function setupEventListeners()
 {
 	const InputNodes = getInputNodes()
-	console.log("InputNodes", InputNodes)
 	const DateInputs = InputNodes.personal.date
 	InputNodes.personal.date.none.addEventListener("click", () => { inputPersonalDateNoneClick(DateInputs) })
 	InputNodes.personal.date.today.addEventListener("click", () => { inputPersonalDateTodayClick(DateInputs) })
@@ -238,7 +289,7 @@ function setupEventListeners()
 	InputNodes.events.add.click()
 
 	const RenderButton = document.querySelector("#render-button")
-	RenderButton.addEventListener("click", () => { renderSchedule() })
+	RenderButton.addEventListener("click", renderSchedule)
 }
 
 
@@ -333,11 +384,118 @@ function setupScheduleTemplate(event)
 		.addEventListener("click", () => { inputScheduleTimeFullDayClick(EventNumber, scheduleNumber) })
 }
 
-function setupRenderGridTemplate(event)
+function setupRenderTemplate(listenedEvent)
 {
-	const InputNodes = getInputNodes()
-	const TemplateNodes = getTemplateNodes().event
+	const Template = getTemplateNodes().render.grid
+	const Container = document.querySelector("#render-grid")
 
-	const Template = TemplateNodes.event
-	const Container = InputNodes.events.accordion
+	const Clone = Template.content.cloneNode(true)
+	var iconsEnabled = false
+	var descriptionsEnabled = false
+	var groupsEnabled = false
+	const Events = getEventsData()
+	Events.forEach(event =>
+	{
+		if (event.icon)
+			iconsEnabled = true
+		if (event.description)
+			descriptionsEnabled = true
+		if (event.group)
+			groupsEnabled = true
+	})
+	// Clone.querySelector("#render-events-grid").appendChild(generateEventsGridTable(Events, iconsEnabled, descriptionsEnabled, groupsEnabled))
+	Clone.querySelector("#render-events-list").appendChild(generateEventsListTable(Events, iconsEnabled, descriptionsEnabled, groupsEnabled))
+	// Clone.appendChild(generateEventsListTable())
+
+
+	console.log(Clone)
+	Array.from(Container.children).forEach(childElement =>
+	{
+		Container.removeChild(childElement)
+	})
+	Container.appendChild(Clone)
+	// result = document.querySelector(`#data-event-${EventNumber}-schedule-${scheduleNumber}`)
+}
+function generateEventsGridTable(events, iconsEnabled, descriptionsEnabled, groupsEnabled)
+{
+
+
+	return undefined
+}
+function generateEventsListTable(events, iconsEnabled, descriptionsEnabled, groupsEnabled)
+{
+	const Table = document.createElement("table")
+	Table.setAttribute("class", "table")
+
+	const THead = document.createElement("thead")
+	Table.appendChild(THead)
+	const THeadTR = document.createElement("tr")
+	THead.appendChild(THeadTR)
+	if (iconsEnabled)
+	{
+		const THIcon = document.createElement("th")
+		THIcon.setAttribute("scope", "col")
+		// THIcon.innerText = "Icon"
+		THeadTR.appendChild(THIcon)
+	}
+	const THTitle = document.createElement("th")
+	THTitle.setAttribute("scope", "col")
+	THTitle.innerText = "Title"
+	THeadTR.appendChild(THTitle)
+	if (descriptionsEnabled)
+	{
+		const THDescription = document.createElement("th")
+		THDescription.setAttribute("scope", "col")
+		THDescription.innerText = "Description"
+		THeadTR.appendChild(THDescription)
+	}
+	if (groupsEnabled)
+	{
+		const THGroup = document.createElement("th")
+		THGroup.setAttribute("scope", "col")
+		THGroup.innerText = "Group"
+		THeadTR.appendChild(THGroup)
+	}
+
+	const TBody = document.createElement("tbody")
+	Table.appendChild(TBody)
+
+	events.forEach(event =>
+	{
+		// Create table rows according to Bootstrap's tables doc.
+		// https://getbootstrap.com/docs/5.0/content/tables/
+
+		const TBodyTR = document.createElement("tr")
+		TBody.appendChild(TBodyTR)
+		TBodyTR.setAttribute("class", `table-${event.colour}`)
+		if (iconsEnabled)
+		{
+			const IconTH = document.createElement("th")
+			IconTH.setAttribute("scope", "row")
+			TBodyTR.appendChild(IconTH)
+			IconTH.innerText = event.icon
+		}
+		const TitleTH = document.createElement("th")
+		if (!iconsEnabled)
+		{
+			TitleTH.setAttribute("scope", "row")
+		}
+		TBodyTR.appendChild(TitleTH)
+		TitleTH.innerText = event.title
+		if (descriptionsEnabled)
+		{
+			const DescriptionTD = document.createElement("td")
+			TBodyTR.appendChild(DescriptionTD)
+			DescriptionTD.innerText = event.description
+		}
+		if (groupsEnabled)
+		{
+			const GroupTD = document.createElement("td")
+			TBodyTR.appendChild(GroupTD)
+			GroupTD.innerText = event.group
+		}
+	})
+
+
+	return Table
 }

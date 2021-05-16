@@ -118,19 +118,18 @@
 				</div>
 			</div>
 		</p>
-		<h2 id="render">
-			<div class="d-grid gap-2">
-				<button id="render-button" type="button" class="btn btn-primary btn-lg">
-					Render schedule <i class="bi bi-stars"></i>
-				</button>
-			</div>
-		</h2>
 		<p>
-			Here is a preview of what your schedule will look like.
-			<div id="render-grid">
-				<!-- Render grid template goes here -->
-			</div>
+			<h2 id="render">
+				<div class="d-grid gap-2">
+					<button id="render-button" type="button" class="btn btn-primary btn-lg">
+						Render schedule <i class="bi bi-stars"></i>
+					</button>
+				</div>
+			</h2>
 		</p>
+		<div id="render-grid">
+			<!-- Render grid template goes here -->
+		</div>
 		<h2 id="about">About this applet</h2>
 		<p>
 			Want to know more about this little web applet? Check out these links!
@@ -288,8 +287,11 @@
 		</template>
 
 		<!-- Render grid template -->
-		<template id="template-render-grid">
-			Grid goes here!
+		<template id="template-render-base">
+			<h2>Rendered schedule</h2>
+			<div class="container" id="render-events-grid"></div>
+			<h3>Events list</h3>
+			<div class="container" id="render-events-list"></div>
 		</template>
 	</div>
 </body>
