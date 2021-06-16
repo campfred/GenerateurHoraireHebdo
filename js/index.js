@@ -403,7 +403,7 @@ function setupRenderTemplate(listenedEvent)
 		if (event.group)
 			groupsEnabled = true
 	})
-	// Clone.querySelector("#render-events-grid").appendChild(generateEventsGridTable(Events, iconsEnabled, descriptionsEnabled, groupsEnabled))
+	Clone.querySelector("#render-events-grid").appendChild(generateEventsGridTable(Events, iconsEnabled, descriptionsEnabled, groupsEnabled))
 	Clone.querySelector("#render-events-list").appendChild(generateEventsListTable(Events, iconsEnabled, descriptionsEnabled, groupsEnabled))
 	// Clone.appendChild(generateEventsListTable())
 
@@ -418,17 +418,30 @@ function setupRenderTemplate(listenedEvent)
 }
 function generateEventsGridTable(events, iconsEnabled, descriptionsEnabled, groupsEnabled)
 {
+	const Container = document.createElement("div")
+	Container.setAttribute("class", "container")
 
+	const RowTitle = document.createElement("div")
+	Container.appendChild(RowTitle)
+	RowTitle.setAttribute("class", "row")
+	const ColumnTitles = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+	ColumnTitles.forEach(ColumnTitle => {
+		const Column = document.createElement("div")
+		RowTitle.appendChild(Column)
+		Column.setAttribute("class", "col")
+		Column.innerText = ColumnTitle
+	})
 
-	return undefined
+	return Container
 }
 function generateEventsListTable(events, iconsEnabled, descriptionsEnabled, groupsEnabled)
 {
 	const Table = document.createElement("table")
-	Table.setAttribute("class", "table")
+	Table.setAttribute("class", "table table-bordered")
 
 	const THead = document.createElement("thead")
 	Table.appendChild(THead)
+	THead.setAttribute("class", "table-dark text-center")
 	const THeadTR = document.createElement("tr")
 	THead.appendChild(THeadTR)
 	if (iconsEnabled)
@@ -472,15 +485,17 @@ function generateEventsListTable(events, iconsEnabled, descriptionsEnabled, grou
 		{
 			const IconTH = document.createElement("th")
 			IconTH.setAttribute("scope", "row")
+			IconTH.setAttribute("class", "text-center")
 			TBodyTR.appendChild(IconTH)
 			IconTH.innerText = event.icon
 		}
 		const TitleTH = document.createElement("th")
+		TBodyTR.appendChild(TitleTH)
 		if (!iconsEnabled)
 		{
 			TitleTH.setAttribute("scope", "row")
 		}
-		TBodyTR.appendChild(TitleTH)
+		TitleTH.setAttribute("class", "text-center")
 		TitleTH.innerText = event.title
 		if (descriptionsEnabled)
 		{
@@ -492,6 +507,7 @@ function generateEventsListTable(events, iconsEnabled, descriptionsEnabled, grou
 		{
 			const GroupTD = document.createElement("td")
 			TBodyTR.appendChild(GroupTD)
+			GroupTD.setAttribute("class", "text-center")
 			GroupTD.innerText = event.group
 		}
 	})
